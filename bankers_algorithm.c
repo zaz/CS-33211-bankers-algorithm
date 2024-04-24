@@ -29,6 +29,19 @@ const unsigned short max[nProcesses][nKindsOfResource] = {
 #define available allocation[0]
 
 
+void readFromStdin() {
+    // open and read from stdin
+    unsigned char buffer2[2];
+    size_t bytesRead = fread(buffer2, sizeof(unsigned char), sizeof(buffer2), stdin);
+
+    unsigned char nProcess = buffer2[0];
+    unsigned char nKindsOfResources = buffer2[1];
+
+    printf("Read %zu bytes.\n", bytesRead);
+    printf("nProcess: %u\n", nProcess);
+    printf("nKindsOfResources: %u\n", nKindsOfResources);
+}
+
 bool isInSafeState(unsigned short* safeSequence) {
     bool finish[nProcesses] = { false };
     // process 0 is not a real process, it's just a placeholder for available
@@ -75,8 +88,9 @@ bool isInSafeState(unsigned short* safeSequence) {
 }
 
 int main(int argc, char *argv[]) {
-    unsigned short safeSequence[nProcesses-1] = { 0 };
+    readFromStdin();
 
+    unsigned short safeSequence[nProcesses-1] = { 0 };
     if (isInSafeState(safeSequence)) {
         printf("System is in safe state\n");
         printf("Safe sequence: ");

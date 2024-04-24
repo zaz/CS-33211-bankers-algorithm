@@ -16,4 +16,4 @@ clean:
 
 # compile and run producer
 test: bankers_algorithm
-	./bankers_algorithm
+	./bankers_algorithm < tests/given
