@@ -88,14 +88,18 @@ int main(int argc, char *argv[]) {
     if (isInSafeState(safeSequence)) {
         printf("System is in safe state\n");
         printf("Safe sequence: ");
-        for (int i = 0; i < nProcesses-1; i++) {
-            printf("P%d", safeSequence[i]);
-            if (i < nProcesses-2) {
-                printf(" -> ");
-            }
-        }
     } else {
         printf("System is not in safe state\n");
+        printf("Sequence: ");
+    }
+    for (int i = 0; i < nProcesses-1; i++) {
+        if (safeSequence[i] == 0) {
+            break;
+        }
+        printf("P%d", safeSequence[i]);
+        if (i < nProcesses-2) {
+            printf(" -> ");
+        }
     }
 
     return 0;
