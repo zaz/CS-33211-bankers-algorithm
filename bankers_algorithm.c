@@ -78,13 +78,7 @@ bool isInSafeState(unsigned short* safeSequence) {
         }
     }
 
-    for (int i = 0; i < nProcesses; i++) {
-        if (!finish[i]) {
-            return false;
-        }
-    }
-
-    return true;
+    return nFinished == nProcesses-1;
 }
 
 int main(int argc, char *argv[]) {
