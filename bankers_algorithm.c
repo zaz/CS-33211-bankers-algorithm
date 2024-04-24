@@ -10,7 +10,7 @@
 // TODO: read this from a CSV file
 #define nProcesses 6
 #define nKindsOfResource 3
-const unsigned short allocation[nProcesses][nKindsOfResource] = {
+unsigned short allocation[nProcesses][nKindsOfResource] = {
     {3, 3, 2},  // available resources
     {0, 1, 0},
     {2, 0, 0},
@@ -35,11 +35,6 @@ bool isInSafeState(unsigned short* safeSequence) {
     // resources, so we consider it finished
     finish[0] = true;
 
-    unsigned short work[nKindsOfResource];
-    for (int i = 0; i < nKindsOfResource; i++) {
-        work[i] = available[i];
-    }
-
     unsigned short nFinished = 0;
 
     unsigned short i = 1;
@@ -51,7 +46,7 @@ bool isInSafeState(unsigned short* safeSequence) {
 
         bool canFinish = true;
         for (int r = 0; r < nKindsOfResource; r++) {
-            if (max[i][r] - allocation[i][r] > work[r]) {
+            if (max[i][r] - allocation[i][r] > available[r]) {
                 canFinish = false;
                 break;
             }
@@ -59,7 +54,7 @@ bool isInSafeState(unsigned short* safeSequence) {
 
         if (canFinish) {
             for (int r = 0; r < nKindsOfResource; r++) {
-                work[r] += allocation[i][r];
+                available[r] += allocation[i][r];
             }
             safeSequence[nFinished] = i;
             finish[i] = true;
