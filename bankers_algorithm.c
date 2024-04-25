@@ -29,15 +29,25 @@ const unsigned short max[nProcesses][nKindsOfResource] = {
 #define available allocation[0]
 
 
+void inputTooShort(char* input) {
+    printf("ERROR: Input too short: ");
+    printf(input);
+    printf("\n");
+    exit(2);
+}
+
 void readFromStdin() {
     // open and read from stdin
     unsigned char buffer2[2];
     size_t bytesRead = fread(buffer2, sizeof(unsigned char), sizeof(buffer2), stdin);
 
+    if (bytesRead < 2) {
+        inputTooShort("Header must contain 2 bytes: Number of processes and number of kinds of resources.");
+    }
+
     unsigned char nProcess = buffer2[0];
     unsigned char nKindsOfResources = buffer2[1];
 
-    printf("Read %zu bytes.\n", bytesRead);
     printf("nProcess: %u\n", nProcess);
     printf("nKindsOfResources: %u\n", nKindsOfResources);
 }
