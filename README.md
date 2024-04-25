@@ -9,7 +9,7 @@ This program implements the banker's algorithm.
 ./bankers_algorithm [-v] < input_file
 ```
 
-Where `-v` gives verbose output.
+Where `-v` gives verbose output. The program returns 0 if the system is in a safe state, 1 if it is not.
 
 Run `./bankers_algorithm < tests/given` to run it on the assigned input, or run `make test` to run the full test suite.
 
@@ -73,7 +73,7 @@ Valgrind confirmed that no memory leaks are possible when the programs exit norm
 
 ## Robustness
 
-The program checks for input that is too short, but doesn't check if it is too long; it simply discards the extra input. The edge cases where we have no processes or no resources are checked. The edge case where even the dummy process P0 is not given is handled with an if statement that calls `exit(3)`.
+The program checks for input that is too short and calls `exit(2)` (avoiding buffer overflow), but doesn't check if it is too long; it simply discards the extra input. The edge cases where we have no processes or no resources are tested. The edge case where even the dummy process P0 is not given is handled with an if statement that calls `exit(3)`. Error exit codes are distinct from `1`, the code returned when the system is not in a safe state.
 
 
 ## Potential Improvements

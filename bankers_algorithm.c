@@ -134,5 +134,9 @@ int main(int argc, char* argv[]) {
     }
     printf("\n");
 
-    return 0;
+    if (nFinished == nProcesses-1) {
+        return 0;
+    } else {
+        return 1;
+    }
 }
