@@ -50,7 +50,14 @@ Spaces above are used for clarity. The actual input file is unspaced, unsigned 8
 
 ## Testing
 
-`make test` builds and runs the banker's algorithm on a set of test cases, including the assigned input (`./bankers_algorithm < tests/given`). The fact that the input is binary has the fun side effect that we can pipe ASCII text into our program and see if the corresponding system is in a safe state:
+`make test` builds and runs the banker's algorithm on a set of test cases, including the assigned input, `./bankers_algorithm < tests/given`:
+
+```
+System is in a safe state.
+Safe sequence: P2 -> P4 -> P1 -> P3 -> P5
+```
+
+The fact that the input is binary has the fun side effect that we can pipe ASCII text into our program and see if the corresponding system is in a safe state:
 
 ``` bash
 $ echo -ne "\b\bIn the beginning the Universe was created. This has made a lot of people very angry and been widely regarded as a bad move. - DA" | ./bankers_algorithm
