@@ -13,6 +13,8 @@ Where `-v` gives verbose output.
 
 Run `./bankers_algorithm < tests/given` to run it on the assigned input, or run `make test` to run the full test suite.
 
+**Note: I use P[1] - P[5] instead of P[0]-P[4].**
+
 
 ## Program Structure
 
@@ -71,4 +73,5 @@ The program checks for input that is too short, but doesn't check if it is too l
 
 ## Potential Improvements
 
-1. Handle interrupts gracefully.
+1. Factor `readInput` and `isInSafeState` functions out of the `main` function to enhance code reusability.
+2. Handle interrupts gracefully.
