@@ -24,10 +24,11 @@ int main(int argc, char* argv[]) {
     // read input
     //
     unsigned char buffer[2];
-    size_t bytesRead = fread(buffer, sizeof(unsigned char), sizeof(buffer), stdin);
+    size_t bytes = fread(buffer, sizeof(unsigned char), sizeof(buffer), stdin);
 
-    if (bytesRead < 2) {
-        inputTooShort("Header must contain 2 bytes: Number of processes and number of kinds of resources.");
+    if (bytes < 2) {
+        inputTooShort("Header must contain 2 bytes: Number of processes and \
+number of kinds of resources.");
     }
 
     unsigned char nProcesses = buffer[0];
@@ -44,7 +45,7 @@ int main(int argc, char* argv[]) {
     }
 
     unsigned char allocation[nProcesses][nKindsOfResources];
-    bytesRead = fread(allocation, sizeof(unsigned char), sizeof(allocation), stdin);
+    bytes = fread(allocation, sizeof(unsigned char), sizeof(allocation), stdin);
     if (debug) {
         fprintf(stderr, "Allocation matrix:\n");
         for (int i = 0; i < nProcesses; i++) {
@@ -54,12 +55,13 @@ int main(int argc, char* argv[]) {
             fprintf(stderr, "\n");
         }
     }
-    if (bytesRead < nProcesses * nKindsOfResources) {
-        inputTooShort("Allocation matrix size must equal the number of processes times the number of kinds of resources.");
+    if (bytes < nProcesses * nKindsOfResources) {
+        inputTooShort("Allocation matrix size must equal the number of \
+processes times the number of kinds of resources.");
     }
 
     unsigned char max[nProcesses][nKindsOfResources];
-    bytesRead = fread(max, sizeof(unsigned char), sizeof(max), stdin);
+    bytes = fread(max, sizeof(unsigned char), sizeof(max), stdin);
     if (debug) {
         fprintf(stderr, "Max matrix:\n");
         for (int i = 0; i < nProcesses; i++) {
@@ -69,8 +71,9 @@ int main(int argc, char* argv[]) {
             fprintf(stderr, "\n");
         }
     }
-    if (bytesRead < nProcesses * nKindsOfResources) {
-        inputTooShort("Max matrix size must equal the number of processes times the number of kinds of resources.");
+    if (bytes < nProcesses * nKindsOfResources) {
+        inputTooShort("Max matrix size must equal the number of processes times\
+ the number of kinds of resources.");
     }
 
     //
