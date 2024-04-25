@@ -1,8 +1,6 @@
-#include <fcntl.h>      // for O_* constants
-#include <stdio.h>      // for printf
-#include <stdlib.h>     // for exit
-#include <unistd.h>     // for ftruncate
-#include <stdbool.h>    // for bool type
+#include <stdio.h>    // for printf
+#include <stdlib.h>   // for exit
+#include <stdbool.h>  // for bool type
 
 // Modifiable constants
 // instead of P0-P4, we will have P1-P5 and "P0" is reserved as a fake process to
