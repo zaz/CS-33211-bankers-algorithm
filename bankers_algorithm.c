@@ -39,6 +39,11 @@ int main(int argc, char* argv[]) {
         fprintf(stderr, "nKindsOfResources: %u\n", nKindsOfResources);
     }
 
+    if (nProcesses < 1) {
+        fprintf(stderr, "ERROR: Number of processes must be at least 1.\n");
+        exit(3);
+    }
+
     unsigned char allocation[nProcesses][nKindsOfResources];
     bytesRead = fread(allocation, sizeof(unsigned char), sizeof(allocation), stdin);
     if (debug) {
