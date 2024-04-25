@@ -16,4 +16,5 @@ clean:
 
 # compile and run producer
 test: bankers_algorithm
-	./bankers_algorithm < tests/given
+	diff -U 3 tests/given.out <(./bankers_algorithm < tests/given)
+	diff -U 3 tests/HHGTTG.out <(./bankers_algorithm < tests/HHGTTG)
