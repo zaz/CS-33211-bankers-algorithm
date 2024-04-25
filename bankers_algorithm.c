@@ -11,13 +11,18 @@
 
 
 void inputTooShort(char* input) {
-    printf("ERROR: Input too short: ");
-    printf(input);
-    printf("\n");
+    fprintf(stderr, "ERROR: Input too short: ");
+    fprintf(stderr, input);
+    fprintf(stderr, "\n");
     exit(2);
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+    bool debug = false;
+    if (argc > 1 && argv[1][0] == '-' && argv[1][1] == 'v') {
+        debug = true;
+    }
+
     //
     // read input
     //
@@ -31,17 +36,37 @@ int main() {
     unsigned char nProcesses = buffer[0];
     unsigned char nKindsOfResources = buffer[1];
 
-    printf("nProcesses: %u\n", nProcesses);
-    printf("nKindsOfResources: %u\n", nKindsOfResources);
+    if (debug) {
+        fprintf(stderr, "nProcesses: %u\n", nProcesses);
+        fprintf(stderr, "nKindsOfResources: %u\n", nKindsOfResources);
+    }
 
     unsigned char allocation[nProcesses][nKindsOfResources];
     bytesRead = fread(allocation, sizeof(unsigned char), sizeof(allocation), stdin);
+    if (debug) {
+        fprintf(stderr, "Allocation matrix:\n");
+        for (int i = 0; i < nProcesses; i++) {
+            for (int j = 0; j < nKindsOfResources; j++) {
+                fprintf(stderr, "%u ", allocation[i][j]);
+            }
+            fprintf(stderr, "\n");
+        }
+    }
     if (bytesRead < nProcesses * nKindsOfResources) {
         inputTooShort("Allocation matrix size must equal the number of processes times the number of kinds of resources.");
     }
 
     unsigned char max[nProcesses][nKindsOfResources];
     bytesRead = fread(max, sizeof(unsigned char), sizeof(max), stdin);
+    if (debug) {
+        fprintf(stderr, "Max matrix:\n");
+        for (int i = 0; i < nProcesses; i++) {
+            for (int j = 0; j < nKindsOfResources; j++) {
+                fprintf(stderr, "%u ", max[i][j]);
+            }
+            fprintf(stderr, "\n");
+        }
+    }
     if (bytesRead < nProcesses * nKindsOfResources) {
         inputTooShort("Max matrix size must equal the number of processes times the number of kinds of resources.");
     }
@@ -89,10 +114,10 @@ int main() {
     // output results
     //
     if (nFinished == nProcesses-1) {
-        printf("System is in safe state\n");
+        printf("System is in a safe state.\n");
         printf("Safe sequence: ");
     } else {
-        printf("System is not in safe state\n");
+        printf("System is not in a safe state.\n");
         printf("Sequence: ");
     }
     for (int i = 0; i < nProcesses-1; i++) {

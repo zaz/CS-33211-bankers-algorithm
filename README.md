@@ -6,8 +6,10 @@ This program implements the banker's algorithm.
 ## Usage
 
 ```
-./bankers_algorithm < input_file
+./bankers_algorithm [-v] < input_file
 ```
+
+Where `-v` gives verbose output.
 
 
 ## Program Structure
