@@ -41,7 +41,15 @@ Spaces above are used for clarity. The actual input file is unspaced, unsigned 8
 
 ## Testing
 
-Run `make test` to build and run the banker's algorithm.
+Run `make test` to build and run the banker's algorithm. This runs `./bankers_algorithm < tests/given`, which contains the assigned input (above). The fact that the input is binary has the fun side effect that we can pipe ASCII text into our program and see if the corresponding system is in a safe state:
+
+``` bash
+$ echo -ne "\b\bIn the beginning the Universe was created. This has made a lot of people very angry and been widely regarded as a bad move. - DA" | ./bankers_algorithm
+System is in a safe state.
+Safe sequence: P1 -> P2 -> P5 -> P3 -> P4 -> P6 -> P7
+```
+
+The above works because `\b` generates an ASCII backspace, which has numeric value 8. So we are saying we have 8 processes (including the dummy process P0) and 8 kinds of resources. The 128-character string represents the resource allocation and maximum possible resource allocation. You can see more detailed output with `./bankers_algorithm -v < tests/HHGTTG`
 
 Valgrind confirmed that no memory leaks are possible when the programs exit normally, but handling memory when the program is interrupted was not made robust.
 
