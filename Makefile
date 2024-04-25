@@ -5,7 +5,7 @@ flags = -Wall -Wextra
 .PHONY: all clean test watch
 
 # default action
-all: producer consumer
+all: bankers_algorithm
 
 # compile producer
 bankers_algorithm: bankers_algorithm.c
