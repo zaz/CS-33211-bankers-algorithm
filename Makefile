@@ -18,3 +18,5 @@ clean:
 test: bankers_algorithm
 	diff -U 3 tests/given.out <(./bankers_algorithm < tests/given)
 	diff -U 3 tests/HHGTTG.out <(./bankers_algorithm < tests/HHGTTG)
+#   the system is in a safe state if there are no processes
+	diff -U 3 tests/1110.out <(./bankers_algorithm < tests/1110)
