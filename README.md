@@ -62,6 +62,13 @@ Valgrind confirmed that no memory leaks are possible when the programs exit norm
 ```
 
 
+## Robustness
+
+The program checks for input that is too short, but doesn't check if it is too long; it simply discards the extra input.
+
+
 ## Potential Improvements
 
 1. Check output against known test cases.
+2. Handle interrupts gracefully.
+3. Check that it handles edge cases gracefully (e.g. 0 processes)
