@@ -54,6 +54,4 @@ Valgrind confirmed that no memory leaks are possible when the programs exit norm
 
 ## Potential Improvements
 
-1. Parse input in CSV format from STDIN instead of having it hard-coded.
-2. Check output against known test cases.
-
+1. Check output against known test cases.
