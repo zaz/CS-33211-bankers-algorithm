@@ -24,3 +24,5 @@ test: bankers_algorithm
 	diff -U 3 tests/1110.out   <(./bankers_algorithm < tests/1110)
 #   the system is in a safe state if there are no resources or processes
 	diff -U 3 tests/10.out     <(./bankers_algorithm < tests/10)
+#   the program exits gracefully if the mandatory P0 is not present
+	./bankers_algorithm < tests/00
