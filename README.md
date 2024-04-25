@@ -66,10 +66,9 @@ Valgrind confirmed that no memory leaks are possible when the programs exit norm
 
 ## Robustness
 
-The program checks for input that is too short, but doesn't check if it is too long; it simply discards the extra input.
+The program checks for input that is too short, but doesn't check if it is too long; it simply discards the extra input. The edge cases where we have no processes or no resources are checked. The edge case where even the dummy process P0 is not given is handled with an if statement that calls `exit(3)`.
 
 
 ## Potential Improvements
 
 1. Handle interrupts gracefully.
-2. Check that it handles edge cases gracefully (e.g. 0 processes)
