@@ -75,6 +75,8 @@ Valgrind confirmed that no memory leaks are possible when the programs exit norm
 
 The program checks for input that is too short and calls `exit(2)` (avoiding buffer overflow), but doesn't check if it is too long; it simply discards the extra input. The edge cases where we have no processes or no resources are tested. The edge case where even the dummy process P0 is not given is handled with an if statement that calls `exit(3)`. Error exit codes are distinct from `1`, the code returned when the system is not in a safe state.
 
+The program was compiled using GCC 13.2.1 with `-Wall -Wextra` and no warnings were observed.
+
 
 ## Potential Improvements
 

@@ -2,9 +2,8 @@
 #include <stdlib.h>   // for exit
 #include <stdbool.h>  // for bool type
 
-// Modifiable constants
-// instead of P0-P4, we will have P1-P5 and "P0" is reserved as a fake process to
-// indicate the available resources
+// instead of P0-P4, we will have P1-P5 and "P0" is reserved as a fake process
+// to indicate the available resources
 #define available allocation[0]
 
 
@@ -77,8 +76,8 @@ int main(int argc, char* argv[]) {
     //
     // check if the system is in a safe state
     //
-    unsigned short safeSequence[nProcesses-1] = { };  // TODO: check this is all 0
-    bool finish[nProcesses] = { };  // TODO: check this is all false
+    unsigned short safeSequence[nProcesses-1] = {};
+    bool finish[nProcesses] = {};
     // process 0 is not a real process, it's just a placeholder for available
     // resources, so we consider it finished
     finish[0] = true;
