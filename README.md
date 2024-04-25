@@ -13,17 +13,22 @@ Where `-v` gives verbose output.
 
 Run `./bankers_algorithm < tests/given` to run it on the assigned input, or run `make test` to run the full test suite.
 
-**Note: I use P[1] - P[5] instead of P[0]-P[4].**
+
+## P0: Available Resources
+
+Available resources are stored in P[0], a dummy process whose maximum resources are always 0. For this reason, **I use P[1] - P[5] instead of P[0]-P[4]** to denote the real processes.
 
 
 ## Program Structure
 
-The program is relatively straightforward and is mostly handled by the `isInSafeState` function that takes a pointer to a safe sequence (originally filled with zeros) and fills it with the safe sequence (if one exits) and then returns a boolean indicating *if* a safe sequence exists.
+The program contains two functions: `inputTooShort` to assist in handling a recurring kind of error, and `main`. `main` determines if the debug flag `-v` is set, reads from stdin, runs the banker's algorithm, and outputs the results.
+
+The banker's algorithm loops through all real processes (not including P0). If it finds a process that can terminate (the available resources exceed the maximum resources needed by the process), that process is added to the safe sequence and we go back to the start of the loop.
 
 
 ## Input
 
-Input is given on stdin and consists of a buffer of 8-bit integers. The first byte is the number of processes p, the second byte is the number of kinds of resources r.  The next p × r bytes represents the allocation of resources, with the first p bytes representing the resources allocated to no process. I represent this as "P0", and it is not an actual process. The first p bytes after 2 + p × r bytes must be 0, as this represents the maximum resources P0 needs, which is always none.
+Input is given on stdin and consists of a buffer of 8-bit integers. The first byte is the number of processes p, the second byte is the number of kinds of resources r. The next p × r bytes represents the allocation of resources, with the first p bytes representing the resources allocated to no process (P0). The first p bytes after 2 + p × r bytes must be 0, as this represents the maximum resources P0 needs, which is always none.
 
 ```
 6 3
